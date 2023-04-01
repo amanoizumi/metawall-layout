@@ -36,8 +36,8 @@ app.use(createPinia());
 app.use(VueAxios, axios);
 app.provide("axios", app.config.globalProperties.axios);
 
-app.component("FormView", Form);
-app.component("FieldView", Field);
+app.component("VForm", Form);
+app.component("VField", Field);
 app.component("ErrorMessage", ErrorMessage);
 
 app.use(router);

@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // 'gray': colors.zinc,
-        gray: "#646464",
+        primary: "#03438D",
+        accent: "#FECB02" 
       },
       fontFamily: {
         sans: ["Noto Sans TC", ...fontFamily.sans],
@@ -15,6 +15,12 @@ module.exports = {
       },
       letterSpacing: {
         // normal: ".03em",
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "0.75rem",
+        },
       },
       fontSize: {
         xs: ["12px", "18px"],
