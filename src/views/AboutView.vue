@@ -18,5 +18,3 @@ export default {
     <WelcomeItem></WelcomeItem>
   </div>
 </template>
-
-<style></style>
