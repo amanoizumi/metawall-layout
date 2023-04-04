@@ -1,4 +1,20 @@
-<script setup></script>
+<script setup>
+import { onMounted } from "vue";
+import { apiGetUserProfile } from "@/api/user";
+
+import { useUserStore } from "@/stores/user";
+
+const { userData } = useUserStore();
+
+onMounted(async () => {
+  try {
+    const res = await apiGetUserProfile();
+    userData.value = res.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+</script>
 
 <template>
   <FrontNavbar />

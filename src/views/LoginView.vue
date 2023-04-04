@@ -1,15 +1,40 @@
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+// import { useUserStore } from "@/stores/user";
+import { apiPostUserSignIn } from "@/api/user";
+const user = ref({
+  email: "bikor444044177o@mal.com",
+  password: "12345678",
+});
+const router = useRouter();
 
-const user = ref({});
+// const { signIn } = useUserStore();
 
-const login = () => {
+const login = async () => {
   console.log("login");
+  try {
+    const res = await apiPostUserSignIn({
+      email: user.value.email,
+      password: user.value.password,
+    });
+
+    alert(`${res.data.user.name}，歡迎你！`);
+    router.push("/");
+  } catch (error) {
+    console.log(error);
+  }
 };
 </script>
 
 <template>
   <main class="h-screen flex justify-center items-center">
+    <button class="btn mb-4 leading-none" @click="login" type="button">
+      測試按鈕
+    </button>
+    <button class="btn mb-4 leading-none" @click="getUser" type="button">
+      取得資料
+    </button>
     <section class="max-w-4xl flex gap-x-12">
       <img src="@/assets/images/login-banner.svg" alt="login page banner" />
       <div class="text-center">
