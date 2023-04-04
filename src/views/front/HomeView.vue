@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="max-w-4xl mx-auto flex gap-x-6">
+  <div class="max-w-4xl mx-auto flex gap-x-6 items-start">
     <div>
       <SearchBar class="mb-4" />
       <PostWall />

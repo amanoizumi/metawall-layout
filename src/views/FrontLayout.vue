@@ -1,10 +1,12 @@
 <script setup>
 import { onMounted } from "vue";
-import { apiGetUserProfile } from "@/api/user";
+import { storeToRefs } from "pinia";
 
+import { apiGetUserProfile } from "@/api/user";
 import { useUserStore } from "@/stores/user";
 
-const { userData } = useUserStore();
+const userStore = useUserStore();
+const { userData } = storeToRefs(userStore);
 
 onMounted(async () => {
   try {

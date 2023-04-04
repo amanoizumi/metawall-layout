@@ -1,12 +1,10 @@
 <script setup>
-import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
+
 import { useUserStore } from "@/stores/user";
 
-const { userData } = useUserStore();
-const navbarData = ref({});
-watch(userData, (n) => {
-  navbarData.value = n.value;
-});
+const userStore = useUserStore();
+const { userData } = storeToRefs(userStore);
 </script>
 
 <template>
@@ -17,7 +15,7 @@ watch(userData, (n) => {
       </RouterLink>
       <div class="flex items-center">
         <img
-          :src="navbarData.photo"
+          :src="userData.photo"
           class="w-[30px] h-[30px] object-cover rounded-full border-2 border-black mr-[10px]"
         />
         <a href="#" class="font-bold border-b-2 border-black">Member</a>

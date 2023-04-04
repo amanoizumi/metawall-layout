@@ -7,7 +7,7 @@ import HeroiconsOutlineSearch from "~icons/heroicons-outline/search";
     <div class="flex">
       <select class="input py-3 px-4 mr-3 cursor-pointer" name="" id="">
         <option value="newPosts">最新貼文</option>
-        <option value="myPosts">我的貼文</option>
+        <option value="myPosts">其他貼文</option>
       </select>
       <div class="flex">
         <input class="input py-3 px-4" type="text" placeholder="搜尋貼文" />
