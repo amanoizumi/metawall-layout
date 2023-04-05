@@ -20,7 +20,9 @@ const sideBarItem = computed(() => {
 
 <template>
   <div class="min-w-[309px] bg-white border-2 border-black py-8 px-5">
-    <button type="button" class="btn w-full mb-6">張貼動態</button>
+    <RouterLink class="btn block text-center w-full mb-6" to="/createPost"
+      >張貼動態</RouterLink
+    >
     <div class="flex items-center font-bold mb-[22px]">
       <img
         :src="userData.photo"

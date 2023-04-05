@@ -25,7 +25,12 @@ onMounted(async () => {
   <template v-if="status">
     <FrontNavbar />
     <main>
-      <RouterView class="mt-[65px] pt-[49px]" />
+      <div
+        class="max-w-[869px] flex mt-[65px] pt-[49px] gap-x-6 mx-auto items-start"
+      >
+        <RouterView class="flex-1" />
+        <SideBar />
+      </div>
     </main>
   </template>
 </template>

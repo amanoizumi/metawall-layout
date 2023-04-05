@@ -37,7 +37,11 @@ onMounted(() => {
           class="w-[50px] h-[50px] object-cover rounded-full border-2 border-black mr-[10px]"
         />
         <div>
-          <p>{{ post.user.name }}</p>
+          <a
+            href="#"
+            class="font-bold block hover:text-[#03438D] hover:underline"
+            >{{ post.user.name }}</a
+          >
           <time class="text-[#9B9893] text-xs">{{
             timestampToDate(post.createdAt)
           }}</time>
