@@ -9,7 +9,9 @@ import Components from "unplugin-vue-components/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/metawall-layout/",
+  // base: "/",
+  /* global process */
+  base: process.env.NODE_ENV === "production" ? "/metawall-layout/" : "/",
   plugins: [
     vue(),
     Components({
