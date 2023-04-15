@@ -106,7 +106,7 @@ watch(status, () => formDom.value.resetForm());
               type="password"
               placeholder="密碼"
               v-model="user.password"
-              rules="required"
+              rules="required|min:8"
             />
             <ErrorMessage
               :class="{ 'text-[#F57375] block': errors['密碼'] }"
