@@ -33,12 +33,20 @@ export const apiGetPosts = (timeSort = "", q = "") => {
   }
 
   path += pathArr.join("&");
-  console.log("path=>", path);
   return postRequest.get(path);
+};
+
+export const apiGetPost = (postId) => {
+  return postRequest.get(`/${postId}`);
 };
 
 // 權限
 // 取得個人資料
 export const apiPostPosts = (data) => {
   return postAuthorizationRequest().post("/", data);
+};
+
+// 發表貼文留言
+export const apiPostComment = (postId, comment) => {
+  return postAuthorizationRequest().post(`/${postId}/comments`, comment);
 };

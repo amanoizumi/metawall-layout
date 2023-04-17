@@ -1,12 +1,15 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
 
 import { apiGetUserProfile } from "@/api/user";
 import { useUserStore } from "@/stores/user";
 
 const userStore = useUserStore();
 const { userData } = storeToRefs(userStore);
+
+const router = useRouter();
 
 const status = ref(false);
 onMounted(async () => {
@@ -17,6 +20,8 @@ onMounted(async () => {
     status.value = true;
   } catch (error) {
     console.log(error);
+    alert("請重新登入");
+    router.push("login");
   }
 });
 </script>

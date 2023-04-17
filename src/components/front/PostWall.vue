@@ -3,16 +3,32 @@ import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 
 import { timestampToDate } from "@/utils/toDate";
-import { apiGetPosts } from "@/api/posts";
+import { apiGetPosts, apiGetPost, apiPostComment } from "@/api/posts";
 import { usePostsStore } from "@/stores/posts.js";
 
 const postsStore = usePostsStore();
 const { postList } = storeToRefs(postsStore);
 
+const inputObj = ref({});
+
 const initPostWall = async () => {
   try {
     const res = await apiGetPosts();
     postList.value = res.data.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const submitComment = async (postId, comment) => {
+  try {
+    await apiPostComment(postId, comment);
+    const onePostResult = await apiGetPost(postId);
+    const idx = postList.value.findIndex(
+      (item) => item._id === onePostResult.data.data._id
+    );
+    postList.value[idx] = onePostResult.data.data;
+    inputObj.value[postList.value[idx]._id] = "";
   } catch (err) {
     console.log(err);
   }
@@ -25,6 +41,9 @@ onMounted(() => {
 
 <template>
   <ul v-if="postList.length">
+    {{
+      inputObj
+    }}
     <li
       v-for="(post, index) in postList"
       :key="post.id"
@@ -51,26 +70,32 @@ onMounted(() => {
         <p>{{ post.content }}</p>
       </article>
       <div class="flex items-center mb-[18px]">
+        {{ inputObj[post._id] }}
         <img
           :src="post.user.photo"
           class="w-10 h-10 object-cover rounded-full border-2 border-black mr-[10px]"
         />
         <div class="flex flex-1">
           <input
-            v-model="commentInput"
             class="input py-2 px-4"
             type="text"
+            v-model="inputObj[post._id]"
             placeholder="留言..."
           />
+
           <button
             type="button"
+            @click="submitComment(post._id, { comment: inputObj[post._id] })"
             class="bg-primary text-white border-black border-2 border-l-0 p-2 hover:bg-accent hover:text-black shrink-0"
+            :disabled="
+              inputObj[post._id] === undefined || inputObj[post._id] === ''
+            "
           >
             留言
           </button>
         </div>
       </div>
-      <ul>
+      <ul class="flex flex-col gap-y-4">
         <li
           class="bg-[#EFECE7] py-[18px] px-4 rounded-xl flex"
           v-for="comment in post.comment"
