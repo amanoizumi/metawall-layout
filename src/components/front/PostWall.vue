@@ -6,6 +6,8 @@ import { timestampToDate } from "@/utils/toDate";
 import { apiGetPosts, apiGetPost, apiPostComment } from "@/api/posts";
 import { usePostsStore } from "@/stores/posts.js";
 
+import HeroiconsHandThumbUp from "~icons/heroicons/hand-thumb-up";
+
 const postsStore = usePostsStore();
 const { postList } = storeToRefs(postsStore);
 
@@ -41,9 +43,6 @@ onMounted(() => {
 
 <template>
   <ul v-if="postList.length">
-    {{
-      inputObj
-    }}
     <li
       v-for="(post, index) in postList"
       :key="post.id"
@@ -66,11 +65,14 @@ onMounted(() => {
           }}</time>
         </div>
       </div>
-      <article>
+      <article class="mb-5">
         <p>{{ post.content }}</p>
       </article>
+      <div class="flex items-center mb-5">
+        <HeroiconsHandThumbUp class="text-primary text-lg mr-2" />
+        <span>123</span>
+      </div>
       <div class="flex items-center mb-[18px]">
-        {{ inputObj[post._id] }}
         <img
           :src="post.user.photo"
           class="w-10 h-10 object-cover rounded-full border-2 border-black mr-[10px]"

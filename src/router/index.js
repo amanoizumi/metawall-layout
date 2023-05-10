@@ -17,6 +17,11 @@ const router = createRouter({
           name: "createPost",
           component: () => import("../views/front/CreatePostView.vue"),
         },
+        {
+          path: "editUser",
+          name: "editUser",
+          component: () => import("../views/front/EditUser.vue"),
+        },
       ],
     },
     {
